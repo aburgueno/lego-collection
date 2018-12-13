@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Lego Set {{set_num}}</title>
+<link rel="stylesheet" type="text/css" href="sets.css">
+</head>
+<body>
+    <h1>Lego Set {{set_num}}</h1>    
+    <table>
+    <tr>
+    <td colspan = "2">
+    <div>{{set_name}} - {{theme_name}} - Pieces: {{set_num_parts}}</div>
+    </td>
+    <tr>
+    <td colspan = "2">
+    <img src="../../{{set_local_img_url}}" width="250">
+    </td>
+    </tr>
+    {% for box_num in elements|
+                       sort(attribute="part_box_num")|
+                       groupby("part_box_num") %}
+        <tr>
+        <td>
+        <h2>{{box_num.grouper}}</h2>
+        </td>
+        <td>
+        {% for element in box_num.list|sort(attribute="colour_id") %}
+            <span class=nobr 
+                  style="margin-right: 10px; margin-left: 10px">
+            <font size="5"><b>{{element.element_quantity}} x </b></font>
+            <img src="../../{{element.element_local_img_url}}" 
+                	     width="100">
+            	({{element.colour_name}} {{element.part_name}})
+            	</b></font>
+            </span>
+        {% endfor %}	
+        </td>
+        </tr>
+    {% endfor %}
+	</table>
+</body>
+</html>

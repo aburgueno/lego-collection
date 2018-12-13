@@ -1,0 +1,41 @@
+.nobr { 
+  white-space: nowrap
+}
+body {
+  font-family: verdana;    
+}
+h1 {
+  align: center;
+  color: blue;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+  
+}
+h2 {
+  color: green;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+table, th, td {
+  border: 2px solid #ddd;
+  text-align: left;
+  vertical-align: top;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+th, td {
+  padding: 15px;
+}
+div {
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-weight:bold
+}

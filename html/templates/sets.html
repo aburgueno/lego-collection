@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Lego Sets</title>
+<link rel="stylesheet" type="text/css" href="sets.css">
+</head>
+<body>
+{# sets is a list of dictionaries with keys:
+'set_num', 
+'set_name', 
+'set_num_parts', 
+'set_local_img_url', 
+'theme_name'
+#}
+    <h1>Lego Sets</h1>
+    <table>
+	{% for theme, set_group in sets|
+                    	sort(attribute="theme_name")|
+                    	groupby("theme_name") %}
+    	<tr>
+    	<td colspan="4"><h2>{{theme}}</h2></td>
+    	</tr>
+    	<tr>
+    	<th><div>Set number<div></th>
+    	<th><div>Image<div></th>
+    	<th><div>Name<div></th>
+    	<th><div>Number of pieces<div></th>
+        </tr>
+    	{% for set in set_group|sort(attribute="set_num") %}
+        	<tr>
+        	<td><a href="{{set.set_num}}.html">{{set.set_num}}</a></td>
+        	<td><img src="../../{{set.set_local_img_url}}" width = "200px">
+            </td>
+            <td><div>{{set.set_name}}</div></td>
+            <td><div>{{set.set_num_parts}}</div></td>
+            </tr>
+        {% endfor %}	
+    {% endfor %}
+	</table>
+</body>
+</html>

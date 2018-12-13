@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Lego Boxes</title>
+<link rel="stylesheet" type="text/css" href="boxes.css">
+</head>
+<body>
+{# elements is a list of dictionaries with keys:
+box_num
+part_category_name
+part_img_url
+part_name
+quantity
+#}
+    <h1>Lego Boxes</h1>
+    <table>
+	{% for group in elements|
+                    	sort(attribute="part_box_num")|
+                    	groupby("part_box_num") %}
+	<tr>
+	<td><h2><a href="box-{{group.grouper}}.html">{{group.grouper}}</h2></td>
+    	<td>
+    	{% for category in group.list|groupby("part_category_name") %}
+    	<div>{{category.grouper}}</div>
+    	{% for part in category.list %}
+    	<span class=nobr style="margin-right: 10px; margin-left: 10px;">
+    	<img src="../../{{part.part_local_img_url}}" width="50" height="50">
+    	x {{part.element_quantity}}
+    	</span>
+    	{% endfor %}
+    	{% endfor %}	
+    	</td>
+	</tr>
+    {% endfor %}
+	</table>
+</body>
+</html>

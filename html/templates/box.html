@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Lego Box {{box_num}}</title>
+<link rel="stylesheet" type="text/css" href="boxes.css">
+</head>
+<body>
+    <h1>Lego Box {{box_num}}</h1>    
+    <table>
+    {% for category in elements|
+                       sort(attribute="part_category_name")|
+                       groupby("part_category_name") %}
+        <tr>
+        <td>
+        <h2>{{category.grouper}}</h2>
+        </td>
+        </tr>
+        {% for part_name, part_group in category.list|
+                                   sort(attribute="part_name")|
+                                   groupby("part_name") %}
+        {% for part_num, group in part_group|groupby("part_num") %}
+            <tr>
+            <td>
+            <div>{{part_name}} ({{part_num}})</div>
+            </td>
+            </tr>
+            <tr>
+            <td>
+            {% for element in group|sort(attribute="colour_id")%}    
+                <span class=nobr 
+                      style="margin-right: 10px; margin-left: 10px;">
+                	<img src="../../{{element.element_local_img_url}}" 
+                	     width="50" 
+                	     height="50">
+                	({{element.colour_name}}) x {{element.element_quantity}}
+                	</span>
+            {% endfor %}	
+            </td>
+        	</tr>
+        {% endfor %}	
+        {% endfor %}
+    {% endfor %}
+	</table>
+</body>
+</html>
