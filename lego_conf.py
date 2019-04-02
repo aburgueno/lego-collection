@@ -17,8 +17,6 @@ part_html_dir = "html/parts/"
 part_box_csv_file = "part_box.csv"
 
 api_key = rbc.api_key
-user_email = rbc.user_email
-user_pass = rbc.user_pass
 user_token = rbc.user_token
 list_id = rbc.list_id
 
