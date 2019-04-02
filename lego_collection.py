@@ -249,23 +249,23 @@ if __name__ == '__main__':
       
     while 1:
         print ("Menú:")
-        print ("1 - build_collection()")
-        print ("2 - build_html('sets')")
-        print ("3 - build_html('boxes')")
-        print ("s - Salir")
-        option = input("Selecciona una opción: ")
+        print ("1 - Fetch your data from Rebrickable and build your local database")
+        print ("2 - Build html pages for all the sets you own")
+        print ("3 - Build html pages for all your storage boxes")
+        print ("x - Exit")
+        option = input("Choose an option: ")
         if (option == "1"):
-            print ("Has escogido 1 - build_collection()")
+            print ("You've chosen 1 - build_collection()")
             print (lc.build_collection())
         elif (option == "2"):
-            print ("Has escogido 2 - build_html('sets')")
+            print ("You've chosen 2 - build_html('sets')")
             lc.build_html('sets')
         elif (option == "3"):
-            print ("Has escogido 2 - build_html('boxes')")
+            print ("You've chosen 3 - build_html('boxes')")
             lc.build_html('boxes')
-        elif  (option == "s"):
+        elif  (option == "x"):
             break
         else:
-            print ("Prueba otra vez")
+            print ("Try again")
 
 
