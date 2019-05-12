@@ -1,49 +1,163 @@
+"""lego.py module
+
+This module defines the classes used to represent the components of a 
+collection of Lego sets. In this collection, Lego bricks are stored 
+in labelled boxes according to shape. This means that bricks of the 
+same shape but different colour are stored in the same box. The 
+classes attempt to mirror the data structures underlying 
+Rebrickable.com as provided by its API.
+
+Classes
+-------
+LegoBox : Dict
+	A class to represent the physical place where Lego bricks 
+	are stored, i.e. the label of the box. 
+LegoColour : Dict
+	A class to represent the color of Lego bricks. It uses 
+	Rebrickable.com and RGB colour IDs.
+LegoElement : Dict
+	A class to represent Lego bricks in the collection. 
+	It provides the more detailed description of a Lego brick 
+	and has to be distinguished from LegoPart. 
+	LegoPart identifies the shape of a Lego brick, but not 
+	its colour. LegoElement also provides the colour of a Lego
+	brick, among other additional attributes, such as the total
+	number of bricks with that shape and colour in the collection.
+LegoPart : Dict
+	A class to represent the shape of a Lego brick and its location
+	in the collection (the box where it is stored - remember blocks 
+	are stored by shape, and not colour)
+LegoPartCategory : Dict
+	A class to represent the category of a Lego part. The categories
+	are the ones provided by Rebrickable.com, and not necessarily
+	the ones defined by Lego
+LegoSet : Dict
+	A class to represent Lego sets, such as set 75159 'The Death
+	Star'. 
+LegoTheme : Dict
+	A class to represent the theme to which a Lego set belongs. 
+	For example, set 75159 'The Death Star' belongs to the theme
+	'Star Wars'
+"""
+
 # -*- coding: utf-8 -*-
 
 class LegoBox(dict):
-    '''
-    # { 'num'           : <string>,
-    # }
-    '''
+	"""
+	A class to represent the physical place where Lego bricks 
+	are stored, i.e. the label of the box. In this collection
+	all boxes are identified by unique labels such as "1.1" or
+	"10"
+	
+	Attributes
+	----------
+	num : str
+		the label of the box. Example: "10", "1.1", etc
+	
+	Methods
+	-------
+    get_num() -> str
+		returns the label of the box
+	"""
     
     def __init__(self, box_num):
+		"""
+		Initialises the object with the label provided in the
+		parameter box_num
+		
+		Parameters
+		----------
+		box_num : str
+			The label of the box
+		"""
         self['num']=box_num
-        self['element_ids']=[] # create an empty LegoBox 
+    #    self['element_ids']=[] # create an empty LegoBox 
+	# TODO: I believe the attribute element_ids is legacy from previous 
+	# 		versions and not used anymore. Doublecheck! 
         
     def get_num(self):
+		"""
+		Returns the label of the box as a string
+		"""
         return(self['num'])        
  
 ###############################################################################    
     
 class LegoColour(dict):
     """
-    # 
-    # { 'id'            : <int>,
-    #   'name'          : <string>,
-    #   'rgb'           : <string>,
-    #   'is_trans'      : <boolean>,
-    #   }
-    #
+    A class to represent the color of Lego bricks. It uses 
+	RGB colour IDs.
+	
+	Attributes
+	----------
+	id : int
+		Colour ID as provided by Rebrickable.com
+	name : str
+		Colour name as provided by Rebrickable.com
+	rgb : str
+		RGB id
+	is_trans : bool
+		True is colour is transparent
+	
+	Methods
+	-------
+	get_id() -> int
+		Returns the Rebrickable colour ID as an int
+	get_name() -> str
+		Returns the name of the colour as a string
+	get_rgb () -> str
+		Returns the rgb code as a string
+	is_trans() -> bool
+		Returns true is the colour is transparent, false otherwise
     """
 
     def __init__(self, lc_id, lc_name, lc_rgb, lc_is_trans):
-
+		"""
+		Initialises the object
+		
+		Parameters
+		----------
+		lc_id : int
+			Rebrickable colour ID
+		lc_name : str
+			Name of the colour
+		lc_rgb : str
+			RGB code
+		lc_is_trans : bool
+			True if the colour is transparent, false otherwise
+		NOTE: lc stands for (l)ego (c)olour
+		"""
+ 
         self['id'] = lc_id
         self['name'] = lc_name
         self['rgb'] = lc_rgb
         self['is_trans'] = lc_is_trans
         
     def get_id(self):
+		"""
+		Returns the Rebrickable colour ID as an int
+		"""
         return self['id']
         
     def get_name(self):
+ 		"""
+		Returns the name of the colour as a string
+		"""
         return self['name']
         
     def get_rgb(self):
+ 		"""
+		Returns the RGB code of the colour as a string
+		"""
         return self['rgb']
         
     def is_trans(self):
+		"""
+		Returns TRUE if the colour is transparent, FALSE otherwise
+		"""
         return self['is_trans']
+
+# TODO: Continue documenting from here
 
 class LegoElement(dict):
     '''
@@ -94,11 +208,6 @@ class LegoElement(dict):
     
     def set_quantity(self, qty):
         self['quantity'] = qty
-
-
-
-     
-###############################################################################    
 
 
 
@@ -174,15 +283,6 @@ class LegoPartCategory(dict):
         return self['name']
 
 
-       
-###############################################################################    
-        
-        
-###############################################################################    
-
-
-###############################################################################    
-
 class LegoSet(dict):
     """
     # { 'num'           : <string>,
@@ -252,8 +352,6 @@ class LegoSet(dict):
         self['quantity'] = qty
 
 
-###############################################################################    
-
 class LegoTheme(dict):
     """
     # 
@@ -278,11 +376,4 @@ class LegoTheme(dict):
     
     def get_parent_id(self):
         return self['parent_id']
-
-
-###############################################################################    
-
-
-
-###############################################################################
 
