@@ -11,7 +11,7 @@ debug = 1
 import os
 import pandas as pd
 
-import lego as lg
+import lego_shelves as lgs
 import rebrickable as rb
 import lego_conf as lconf
 
@@ -28,13 +28,13 @@ class LegoCollection:
 
         self.reb = rb.Rebrickable()
 
-        self.lcs = lg.LegoColourShelf()
-        self.lts = lg.LegoThemeShelf()       
-        self.lpcs = lg.LegoPartCategoryShelf()        
-        self.lps = lg.LegoPartShelf()        
-        self.les = lg.LegoElementShelf()        
-        self.lss = lg.LegoSetShelf()        
-        self.lbs = lg.LegoBoxShelf()
+        self.lcs = lgs.LegoColourShelf()
+        self.lts = lgs.LegoThemeShelf()       
+        self.lpcs = lgs.LegoPartCategoryShelf()        
+        self.lps = lgs.LegoPartShelf()        
+        self.les = lgs.LegoElementShelf()        
+        self.lss = lgs.LegoSetShelf()        
+        self.lbs = lgs.LegoBoxShelf()
 
     def build_collection(self):
         

@@ -16,6 +16,7 @@ import time
 import os
 
 import lego as lg
+import lego_shelves as lgs
 import lego_conf as lconf
 
 
@@ -35,7 +36,7 @@ class Rebrickable:
         # of LegoColour objects
         #
         """     
-        lcs = lg.LegoColourShelf()
+        lcs = lgs.LegoColourShelf()
         next_page = 1
         while next_page > 0:
             try:
@@ -74,7 +75,7 @@ class Rebrickable:
         #
         """
         
-        ths = lg.LegoThemeShelf()
+        ths = lgs.LegoThemeShelf()
         next_page = 1
         while next_page > 0:
             try:
@@ -106,7 +107,7 @@ class Rebrickable:
         #
         """
         
-        pcs = lg.LegoPartCategoryShelf()
+        pcs = lgs.LegoPartCategoryShelf()
         next_page = 1
         while next_page > 0:
             try:
@@ -135,9 +136,9 @@ class Rebrickable:
         # Fetches the parts, elements and sets shelves
         '''
         
-        ps = lg.LegoPartShelf()
-        es = lg.LegoElementShelf()
-        us = lg.LegoSetShelf()
+        ps = lgs.LegoPartShelf()
+        es = lgs.LegoElementShelf()
+        us = lgs.LegoSetShelf()
         
         # first get a dictionary <set_num:qty> with all the user sets
         
@@ -302,7 +303,7 @@ if __name__ == '__main__':
         if (option == "1"):
             print ("Has escogido 1 - fetch_colour_shelf()")
             rb.fetch_colour_shelf()
-            ls = lg.LegoColourShelf()
+            ls = lgs.LegoColourShelf()
             for k in ls.keys():
                 print (k , ls[k])
             print (len(ls))
@@ -310,7 +311,7 @@ if __name__ == '__main__':
         if (option == "2"):
             print ("Has escogido 2 - fetch_theme_shelf()")
             rb.fetch_theme_shelf()
-            ls = lg.LegoThemeShelf()
+            ls = lgs.LegoThemeShelf()
             for k in ls.keys():
                 print (k , ls[k])
             print (len(ls))
@@ -318,7 +319,7 @@ if __name__ == '__main__':
         if (option == "3"):
             print ("Has escogido 3 - fetch_part_category_shelf()")
             rb.fetch_part_category_shelf()
-            ls = lg.LegoPartCategoryShelf()
+            ls = lgs.LegoPartCategoryShelf()
             for k in ls.keys():
                 print (k , ls[k])
             print (len(ls))
@@ -328,14 +329,14 @@ if __name__ == '__main__':
             rb.fetch_main_shelves()
         if (option == "5"):
             print ("Has escogido 5 - fetch element images")
-            els = lg.LegoElementShelf()
+            els = lgs.LegoElementShelf()
             for el in els.keys():
                 print ('Fetching img for element ', el)
                 rb.fetch_img(els[el].get_img_url(), 
                              els[el].get_local_img_url())
         if (option == "6"):
             print ("Has escogido 6 - fetch set images")
-            ss = lg.LegoSetShelf()
+            ss = lgs.LegoSetShelf()
             for s in ss.keys():
                 print ('Fetching img for set ', s)
                 rb.fetch_img(ss[s].get_img_url(), 
